@@ -1,0 +1,42 @@
+﻿@{
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+    <title>Tính tiền</title>
+    <meta http-equiv="content-type" content="text/html" charset="utf-8" />
+    <script language="javascript">
+        function CalculateTotal() {
+            var dg = parseFloat(document.getElementById("iPrice").value);
+            var sl = parseFloat(document.getElementById("iQuantity").value);
+
+            document.getElementById("errPrice").innerHTML = "";
+            document.getElementById("errQuantity").innerHTML = "";
+
+            if (dg < 0) {
+                document.getElementById("errPrice").value = "Đơn giá phải >=0";
+            }
+
+            if (sl < 1 || sl > 10) {
+                document.getElementById("errQuantity").value = "Số lượng phải chạy trong khoảng[1, 10]";
+            }
+            else {
+                document.getElementById("txtTotal").value = dg * sl;
+            }
+        }
+    </script>
+}
+<body>
+    Nhập số lượng và đơn giá
+    <form name="ShoppigCart" method="post">
+        Đơn giá: <input type="number" id="iPrice" name="Price"
+                        min="0"
+                        onchange="CalculateTotal();" />
+        <span id="errPrice" style="color:indianred"></span>
+        <br />
+        Số lượng: <input type="number" id="iQuantity" name="Quantity"
+                         min="1" max="10"
+                         onchange="CalculateTotal();" />
+        <span id="errQuantity" style="color:indianred"></span>
+        <br />
+        Thành Tiền: <input type="text" id="txtTotal" name="Total" readonly />
+
+    </form>
+</body>

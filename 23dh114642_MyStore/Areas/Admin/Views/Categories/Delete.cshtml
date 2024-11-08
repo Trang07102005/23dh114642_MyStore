@@ -5,32 +5,31 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2 class="bg-success">XÓA DANH MỤC</h2>
+<h2 class="text-center text-white p-3" style="background-color: #28a745;">XÓA DANH MỤC CÔNG VIỆC</h2>
 
-
- @using (Html.BeginForm())
- {
+<div class="container mt-4">
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
-                  
-<div class="form-horizontal">
-    <hr />
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <h4 >Bạn thực sự muốn xóa danh mục này không?</h4>
+
+        <div class="card">
+            <div class="card-header bg-danger text-white">
+                <h5 class="mb-0">Cảnh Báo</h5>
             </div>
-        </div>
-            <div class="form-group">
-                <div class="control-label col-md-2">Tên danh mục</div>
-                <div class="col-md-10">
-                    @Html.DisplayFor(model => model.CategoryName)
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Xóa" class="btn btn-primary" /> |
-                        @Html.ActionLink("Quay lại danh sách", "Index", null, new { @class = "btn btn-primary" })
+            <div class="card-body">
+                <h4>Bạn thực sự muốn xóa danh mục này không?</h4>
+
+                <div class="form-group row">
+                    <label class="control-label col-md-2">Tên danh mục:</label>
+                    <div class="col-md-10">
+                        @Html.DisplayFor(model => model.CategoryName)
                     </div>
                 </div>
             </div>
+            <div class="card-footer text-right">
+                <input type="submit" value="Xóa" class="btn btn-danger" />
+                @Html.ActionLink("Quay lại danh sách", "Index", null, new { @class = "btn btn-secondary" })
+            </div>
         </div>
-  }
-
+    }
+</div>
